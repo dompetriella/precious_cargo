@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="precious_cargo"
+run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://events.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [rendering]
 
