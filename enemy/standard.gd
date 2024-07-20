@@ -1,11 +1,11 @@
-extends Node
+class_name Standard
+extends Node2D
 
+@export var score: int = 10;
+@export var speed: float = 90;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	_move(delta);
+
+func _move(delta: float):
+	self.global_position.y += speed * delta

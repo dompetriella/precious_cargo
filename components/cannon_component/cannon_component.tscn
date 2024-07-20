@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qldwjfs3dd3q"]
+
+[ext_resource type="Script" path="res://components/cannon_component/cannon_component.gd" id="1_neunm"]
+
+[node name="CannonComponent" type="Node"]
+script = ExtResource("1_neunm")

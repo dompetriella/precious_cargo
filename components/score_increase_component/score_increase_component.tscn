@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oo5u6ud6gh8p"]
+
+[ext_resource type="Script" path="res://components/score_increase_component/score_increase_component.gd" id="1_0u6pe"]
+
+[node name="ScoreIncreaseComponent" type="Node2D"]
+script = ExtResource("1_0u6pe")

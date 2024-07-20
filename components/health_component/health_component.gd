@@ -19,4 +19,6 @@ func take_damage(damage: float):
 	print(str(health) + "/" + str(max_health));
 	
 	if (health <= 0):
+		var score_amount: int = get_parent().score;
+		Events.increase_game_score.emit(score_amount);
 		get_parent().queue_free();

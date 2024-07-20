@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c30p1lhw5k71h" path="res://enemy/standard.tscn" id="4_r8xv4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xdk3"]
-size = Vector2(20, 654)
+size = Vector2(13, 1993)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rx5ws"]
 size = Vector2(8007, 74)
@@ -15,35 +15,50 @@ size = Vector2(8007, 74)
 size = Vector2(5837, 61.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gkp1"]
-size = Vector2(20, 654)
+size = Vector2(17, 1999)
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_rcrqx")]
+[node name="PlayArea" type="Node2D" parent="."]
+
+[node name="LevelContainer" type="Node2D" parent="PlayArea"]
+
+[node name="LeftSpawnBoundary" type="Marker2D" parent="PlayArea"]
+unique_name_in_owner = true
+position = Vector2(91, -472)
+
+[node name="RightSpawnBoundary" type="Marker2D" parent="PlayArea"]
+unique_name_in_owner = true
+position = Vector2(656, -476)
+
+[node name="Player" parent="PlayArea" groups=["Player"] instance=ExtResource("1_rcrqx")]
 position = Vector2(187, 470)
 speed = 350
 
-[node name="Boundary" type="StaticBody2D" parent="." groups=["Boundary"]]
+[node name="EnemyGenerator" type="Node" parent="PlayArea" groups=["EnemyGenerator"]]
+unique_name_in_owner = true
 
-[node name="Left" type="CollisionShape2D" parent="Boundary"]
-position = Vector2(11, 317)
+[node name="sd" parent="PlayArea" instance=ExtResource("4_r8xv4")]
+position = Vector2(421, 93)
+
+[node name="Boundary" type="StaticBody2D" parent="PlayArea" groups=["Boundary"]]
+
+[node name="Left" type="CollisionShape2D" parent="PlayArea/Boundary"]
+position = Vector2(8.5, 154.5)
 shape = SubResource("RectangleShape2D_7xdk3")
 
-[node name="Bottom" type="CollisionShape2D" parent="Boundary"]
+[node name="Bottom" type="CollisionShape2D" parent="PlayArea/Boundary"]
 position = Vector2(645.5, 614)
 shape = SubResource("RectangleShape2D_rx5ws")
 
-[node name="Up" type="CollisionShape2D" parent="Boundary"]
+[node name="Up" type="CollisionShape2D" parent="PlayArea/Boundary"]
 position = Vector2(45.5, -19.625)
 shape = SubResource("RectangleShape2D_ey6ij")
 
-[node name="Right" type="CollisionShape2D" parent="Boundary"]
-position = Vector2(738, 321)
+[node name="Right" type="CollisionShape2D" parent="PlayArea/Boundary"]
+position = Vector2(739.5, 148.5)
 shape = SubResource("RectangleShape2D_0gkp1")
 
 [node name="MainUIPanel" parent="." instance=ExtResource("2_odq1e")]
 
 [node name="ScorePanel" parent="." instance=ExtResource("3_111iu")]
-
-[node name="sd" parent="." instance=ExtResource("4_r8xv4")]
-position = Vector2(421, 93)
