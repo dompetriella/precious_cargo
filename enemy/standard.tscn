@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://qldwjfs3dd3q" path="res://components/cannon_component/cannon_component.tscn" id="5_exmwr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vw246"]
-radius = 33.3333
+radius = 36.6667
 height = 93.3333
 
 [node name="StandardDown" type="Node2D"]
@@ -26,7 +26,7 @@ max_health = 25.0
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(-3.55271e-14, -8.33333)
+position = Vector2(-3.06718e-12, -8.33333)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vw246")
 

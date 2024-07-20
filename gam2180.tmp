@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1ffvi53qoe5n"]
+[gd_scene load_steps=9 format=3 uid="uid://b1ffvi53qoe5n"]
 
 [ext_resource type="PackedScene" uid="uid://dalntejunr7x3" path="res://player/player.tscn" id="1_rcrqx"]
 [ext_resource type="PackedScene" uid="uid://v6ymygk34x0l" path="res://enemy_generator/enemy_generator.tscn" id="2_k3boe"]
 [ext_resource type="PackedScene" uid="uid://bt851sxh60lbe" path="res://ui/main_ui_panel.tscn" id="2_odq1e"]
 [ext_resource type="Texture2D" uid="uid://boaypk5idjn3w" path="res://assets/scaled_ui/Group 7.png" id="4_wloi1"]
-[ext_resource type="Script" path="res://ui/health_bar/health_bar.gd" id="5_dr3xg"]
-[ext_resource type="Script" path="res://ui/score/score.gd" id="6_wtcdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xdk3"]
 size = Vector2(13, 1993)
@@ -14,7 +12,7 @@ size = Vector2(13, 1993)
 size = Vector2(8007, 74)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ey6ij"]
-size = Vector2(5837, 114.25)
+size = Vector2(5837, 61.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gkp1"]
 size = Vector2(17, 1999)
@@ -50,7 +48,7 @@ position = Vector2(645.5, 614)
 shape = SubResource("RectangleShape2D_rx5ws")
 
 [node name="Up" type="CollisionShape2D" parent="PlayArea/Boundary"]
-position = Vector2(45.5, 6.875)
+position = Vector2(45.5, -19.625)
 shape = SubResource("RectangleShape2D_ey6ij")
 
 [node name="Right" type="CollisionShape2D" parent="PlayArea/Boundary"]
@@ -63,59 +61,22 @@ shape = SubResource("RectangleShape2D_0gkp1")
 position = Vector2(645.5, 614)
 shape = SubResource("RectangleShape2D_rx5ws")
 
-[node name="UI" type="Control" parent="."]
+[node name="MainUIPanel" parent="." instance=ExtResource("2_odq1e")]
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="MainUIPanel" parent="UI" instance=ExtResource("2_odq1e")]
-z_index = 1
-
-[node name="HealthControl" type="Control" parent="UI"]
-z_index = 1
-layout_mode = 3
-anchors_preset = 0
-offset_left = 168.0
+offset_left = 32.0
 offset_top = 576.0
-offset_right = 576.0
+offset_right = 712.0
 offset_bottom = 640.0
 
-[node name="TextureRect" type="TextureRect" parent="UI/HealthControl"]
+[node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_right = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_wloi1")
 expand_mode = 2
-
-[node name="Label" type="Label" parent="UI/HealthControl"]
-layout_mode = 0
-offset_left = -16.0
-offset_right = 88.0
-offset_bottom = 64.0
-text = "HEALTH"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HealthBar" type="ProgressBar" parent="UI/HealthControl"]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 16.0
-offset_right = 376.0
-offset_bottom = 51.0
-script = ExtResource("5_dr3xg")
-
-[node name="Score" type="Label" parent="UI"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 728.0
-offset_bottom = 48.0
-text = "SCORE: 0"
-vertical_alignment = 1
-script = ExtResource("6_wtcdh")

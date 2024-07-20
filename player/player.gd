@@ -4,6 +4,10 @@ extends CharacterBody2D
 @export var speed: int = 200;
 @export var player_collision_damage: float = 20;
 
+@export var player_health: int = 200;
+@export var player_energy_maximium: int = 2000;
+@export var player_heat_capacity: int = 200;
+
 @onready var cannon: Node = get_node('%Cannon');
 
 var bullet_scene: PackedScene = preload("res://bullet/bullet.tscn");
