@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dalntejunr7x3"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_42jve"]
+[ext_resource type="Texture2D" uid="uid://bw0evvsav0n52" path="res://assets/non_ui/playerShip2_red.png" id="2_7vi72"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_euykg"]
+radius = 20.0
+height = 68.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_42jve")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.476563, 1)
+texture = ExtResource("2_7vi72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_euykg")
+
+[node name="Cannon" type="Node" parent="."]
+unique_name_in_owner = true

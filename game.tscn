@@ -1,3 +1,49 @@
-[gd_scene format=3 uid="uid://b1ffvi53qoe5n"]
+[gd_scene load_steps=9 format=3 uid="uid://b1ffvi53qoe5n"]
+
+[ext_resource type="PackedScene" uid="uid://dalntejunr7x3" path="res://player/player.tscn" id="1_rcrqx"]
+[ext_resource type="PackedScene" uid="uid://bt851sxh60lbe" path="res://ui/main_ui_panel.tscn" id="2_odq1e"]
+[ext_resource type="PackedScene" uid="uid://7u80ifld6pq" path="res://ui/score_panel.tscn" id="3_111iu"]
+[ext_resource type="PackedScene" uid="uid://c30p1lhw5k71h" path="res://enemy/standard.tscn" id="4_r8xv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xdk3"]
+size = Vector2(20, 654)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx5ws"]
+size = Vector2(8007, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ey6ij"]
+size = Vector2(5837, 61.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gkp1"]
+size = Vector2(20, 654)
 
 [node name="Game" type="Node2D"]
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_rcrqx")]
+position = Vector2(187, 470)
+speed = 350
+
+[node name="Boundary" type="StaticBody2D" parent="." groups=["Boundary"]]
+
+[node name="Left" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(11, 317)
+shape = SubResource("RectangleShape2D_7xdk3")
+
+[node name="Bottom" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(645.5, 614)
+shape = SubResource("RectangleShape2D_rx5ws")
+
+[node name="Up" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(45.5, -19.625)
+shape = SubResource("RectangleShape2D_ey6ij")
+
+[node name="Right" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(738, 321)
+shape = SubResource("RectangleShape2D_0gkp1")
+
+[node name="MainUIPanel" parent="." instance=ExtResource("2_odq1e")]
+
+[node name="ScorePanel" parent="." instance=ExtResource("3_111iu")]
+
+[node name="StandardDown" parent="." instance=ExtResource("4_r8xv4")]
+position = Vector2(364, 162)

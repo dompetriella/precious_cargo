@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c30p1lhw5k71h"]
+
+[ext_resource type="Texture2D" uid="uid://cdl34vtnwa6sy" path="res://assets/non_ui/Enemies/standard.png" id="1_q1m8o"]
+[ext_resource type="PackedScene" uid="uid://b8b1ums63srw0" path="res://components/health_component/health_component.tscn" id="2_yap5x"]
+[ext_resource type="PackedScene" uid="uid://cdwg8nw2fcj22" path="res://components/hitbox_component/hitbox_component.tscn" id="3_6j85d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vw246"]
+radius = 33.3333
+height = 93.3333
+
+[node name="StandardDown" type="Node2D" groups=["Enemy"]]
+scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q1m8o")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_yap5x")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_6j85d")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-3.55271e-14, -8.33333)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vw246")

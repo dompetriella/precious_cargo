@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://74o42elqhj4k"]
+
+[ext_resource type="Script" path="res://bullet/bullet.gd" id="1_robea"]
+[ext_resource type="Texture2D" uid="uid://dgspvo15l7uop" path="res://assets/non_ui/Lasers/laserRed01.png" id="1_ronn0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_655rm"]
+radius = 5.0
+height = 54.0
+
+[node name="Laser" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_robea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ronn0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_655rm")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
