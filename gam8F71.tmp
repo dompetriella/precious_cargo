@@ -27,11 +27,11 @@ size = Vector2(17, 1999)
 
 [node name="LeftSpawnBoundary" type="Marker2D" parent="PlayArea"]
 unique_name_in_owner = true
-position = Vector2(95, -91)
+position = Vector2(91, -472)
 
 [node name="RightSpawnBoundary" type="Marker2D" parent="PlayArea"]
 unique_name_in_owner = true
-position = Vector2(635, -99)
+position = Vector2(656, -476)
 
 [node name="Player" parent="PlayArea" groups=["Player"] instance=ExtResource("1_rcrqx")]
 position = Vector2(187, 470)
