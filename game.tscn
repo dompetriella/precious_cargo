@@ -45,5 +45,5 @@ shape = SubResource("RectangleShape2D_0gkp1")
 
 [node name="ScorePanel" parent="." instance=ExtResource("3_111iu")]
 
-[node name="StandardDown" parent="." instance=ExtResource("4_r8xv4")]
-position = Vector2(364, 162)
+[node name="sd" parent="." instance=ExtResource("4_r8xv4")]
+position = Vector2(421, 93)
