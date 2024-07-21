@@ -23,6 +23,7 @@ func _on_area_entered(area: Area2D) -> void:
 		if (powershot_connected):
 			powershot_multiplier = player.powershot_power_multiplier;
 		health_component.take_damage(area.bullet_damage * powershot_multiplier);
+		Events.play_sfx.emit("res://assets/audio/enemy_damage.ogg");
 	if (area.name == "DespawnZone"):
 		await get_tree().create_timer(5).timeout;
 		get_parent().queue_free();

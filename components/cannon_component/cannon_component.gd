@@ -32,7 +32,7 @@ func _fire_weapon(delta: float, cannon_position: Vector2):
 			_:
 				print('other');
 
-		fire_delay = max_fire_delay;
+		fire_delay = max_fire_delay + randf();
 	else:
 		fire_delay -= 1.0 * delta;
 
@@ -41,7 +41,8 @@ func _player_fire(delta: float):
 
 func _fire_downaim(delta: float, cannon_position: Vector2):
 	var bullet_instance: EnemyBullet = enemy_bullet.instantiate();
-	bullet_instance.bullet_angle = 90;
+	bullet_instance.bullet_angle = randi() % 20 + 80;
 	bullet_instance.speed = bullet_speed;
 	bullet_instance.global_position = cannon_position;
 	self.add_child(bullet_instance);
+	Events.play_sfx.emit("res://assets/audio/enemy_laser.ogg");

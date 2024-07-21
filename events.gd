@@ -13,3 +13,6 @@ signal toggle_powershot(connected: bool);
 signal toggle_engineer_o2(connected: bool);
 signal toggle_passenger_o2(connected: bool);
 signal send_passenger_bonus(bonus_multiplier: float);
+
+signal play_sfx(media: String);
+signal play_sfx_player(media: String);

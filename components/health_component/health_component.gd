@@ -21,4 +21,5 @@ func take_damage(damage: float):
 	if (health <= 0):
 		var score_amount: int = get_parent().score;
 		Events.increase_game_score.emit(score_amount);
+		Events.play_sfx.emit("res://assets/audio/enemy_dies.ogg");
 		get_parent().queue_free();

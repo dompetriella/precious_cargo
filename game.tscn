@@ -1,12 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1ffvi53qoe5n"]
+[gd_scene load_steps=21 format=3 uid="uid://b1ffvi53qoe5n"]
 
+[ext_resource type="Texture2D" uid="uid://c5y3snvf0nicn" path="res://assets/scaled_ui/planet06.png" id="1_p2r2k"]
 [ext_resource type="PackedScene" uid="uid://dalntejunr7x3" path="res://player/player.tscn" id="1_rcrqx"]
 [ext_resource type="PackedScene" uid="uid://v6ymygk34x0l" path="res://enemy_generator/enemy_generator.tscn" id="2_k3boe"]
+[ext_resource type="Script" path="res://sfx.gd" id="2_m587o"]
 [ext_resource type="PackedScene" uid="uid://bt851sxh60lbe" path="res://ui/main_ui_panel.tscn" id="2_odq1e"]
+[ext_resource type="Texture2D" uid="uid://j7iv2gkl613t" path="res://assets/scaled_ui/planet01.png" id="2_oospr"]
+[ext_resource type="Script" path="res://sfx_player.gd" id="3_4l24p"]
+[ext_resource type="Texture2D" uid="uid://d2l5u5htko7qc" path="res://assets/scaled_ui/planet07.png" id="3_i3vgh"]
 [ext_resource type="Script" path="res://ui/main_ui_panel.gd" id="4_dt24r"]
 [ext_resource type="Texture2D" uid="uid://boaypk5idjn3w" path="res://assets/scaled_ui/Group 7.png" id="4_wloi1"]
 [ext_resource type="Script" path="res://ui/health_bar.gd" id="5_dr3xg"]
 [ext_resource type="Script" path="res://ui/score.gd" id="6_wtcdh"]
+[ext_resource type="AudioStream" uid="uid://bohkuw1mfsj3" path="res://assets/audio/manifold-spaceship-arcarde.mp3" id="11_o50i1"]
+
+[sub_resource type="Gradient" id="Gradient_02ggf"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xfn5g"]
+gradient = SubResource("Gradient_02ggf")
+fill_from = Vector2(0.5, 0.576923)
+fill_to = Vector2(0.504274, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xdk3"]
 size = Vector2(13, 1993)
@@ -37,6 +50,47 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [node name="Game" type="Node2D"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_o50i1")
+autoplay = true
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("2_m587o")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("3_4l24p")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 656.0
+texture = SubResource("GradientTexture2D_xfn5g")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 32.0
+offset_top = -448.0
+offset_right = 744.0
+offset_bottom = 256.0
+texture = ExtResource("1_p2r2k")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+offset_left = 608.0
+offset_top = 240.0
+offset_right = 712.0
+offset_bottom = 344.0
+texture = ExtResource("2_oospr")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+modulate = Color(0.60933, 0.60933, 0.60933, 1)
+offset_left = -160.0
+offset_top = 448.0
+offset_right = 248.0
+offset_bottom = 864.0
+texture = ExtResource("3_i3vgh")
+expand_mode = 1
 
 [node name="PlayArea" type="Node2D" parent="."]
 
@@ -139,11 +193,13 @@ script = ExtResource("5_dr3xg")
 unique_name_in_owner = true
 
 [node name="Score" type="Label" parent="UI"]
+z_index = 2
 layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 728.0
-offset_bottom = 48.0
+offset_left = 776.0
+offset_top = 32.0
+offset_right = 1112.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "SCORE: 0"
 vertical_alignment = 1
 script = ExtResource("6_wtcdh")

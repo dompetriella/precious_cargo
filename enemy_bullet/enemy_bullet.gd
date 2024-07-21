@@ -11,6 +11,7 @@ var starting_position: Vector2;
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Player):
 		Events.damage_player.emit(enemy_bullet_damage);
+		Events.play_sfx_player.emit("res://assets/audio/player_take_damage.ogg");
 		self.queue_free();
 
 

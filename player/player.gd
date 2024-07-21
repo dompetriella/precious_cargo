@@ -38,6 +38,7 @@ extends CharacterBody2D
 @onready var cannon: Node = get_node('%Cannon');
 @onready var energy_sap: Timer = get_node("%EnergySapper");
 @onready var energy_recharge: Timer = get_node("%EnergyRecharge");
+@onready var particles: GPUParticles2D = get_node("GPUParticles2D");
 
 var thrust_connected = false;
 var powershot_connected = false;
@@ -57,6 +58,10 @@ func _ready() -> void:
 	Events.toggle_thrusters.connect(
 		func(connection):
 			thrust_connected = connection; 
+			if (connection):
+				particles.amount = 100;
+			else:
+				particles.amount = 30;
 	);
 	Events.toggle_powershot.connect(
 		func(connection):
@@ -94,6 +99,7 @@ func _fire_weapon(delta: float):
 		if (powershot_connected):
 			max_fire_delay_reduction = powershot_cooldown_rate_reduction;
 		fire_delay = max_fire_delay * max_fire_delay_reduction;
+		Events.play_sfx_player.emit("res://assets/audio/player_laser.ogg");
 		Events.change_heat_amount.emit(player_heat_per_shot);
 	else:
 		fire_delay -= 1.0 * delta;

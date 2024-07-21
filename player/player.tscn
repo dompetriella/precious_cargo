@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dalntejunr7x3"]
+[gd_scene load_steps=6 format=3 uid="uid://dalntejunr7x3"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_42jve"]
 [ext_resource type="Texture2D" uid="uid://bw0evvsav0n52" path="res://assets/non_ui/playerShip2_red.png" id="2_7vi72"]
+[ext_resource type="Texture2D" uid="uid://6enkvv1rihil" path="res://assets/non_ui/Effects/fire02.png" id="2_x5num"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ab3f"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_euykg"]
 radius = 20.0
@@ -9,6 +14,15 @@ height = 68.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_42jve")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-1, 45)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_4ab3f")
+texture = ExtResource("2_x5num")
+lifetime = 0.01
+explosiveness = 0.08
+randomness = 0.09
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.476563, 1)
