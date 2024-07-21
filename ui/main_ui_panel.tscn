@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt851sxh60lbe"]
+[gd_scene load_steps=14 format=3 uid="uid://bt851sxh60lbe"]
 
 [ext_resource type="Texture2D" uid="uid://dgiw4bdcmd13s" path="res://assets/scaled_ui/Group 32(1).png" id="1_mb8oq"]
 [ext_resource type="Texture2D" uid="uid://boaypk5idjn3w" path="res://assets/scaled_ui/Group 7.png" id="2_ex1my"]
@@ -6,12 +6,11 @@
 [ext_resource type="Script" path="res://ui/heat_progress_bar.gd" id="4_bivpq"]
 [ext_resource type="PackedScene" uid="uid://ci06ltau2h23e" path="res://ui/connection_active_panel/connection_active_panel.tscn" id="5_hcot5"]
 [ext_resource type="PackedScene" uid="uid://c8twv8h1s3wpo" path="res://ui/connection_button/connection_button.tscn" id="6_67vwf"]
-[ext_resource type="Texture2D" uid="uid://o0rw6pxd3md0" path="res://assets/ui/icons/arrowDown.png" id="7_bj5xr"]
 [ext_resource type="Texture2D" uid="uid://bvbyj7bw2radt" path="res://assets/ui/icons/larger.png" id="8_f1e85"]
-[ext_resource type="Texture2D" uid="uid://c8t7bdp65l65q" path="res://assets/ui/icons/fightJoy_25.png" id="9_2rgbh"]
 [ext_resource type="Texture2D" uid="uid://cyhh6hxph4ogc" path="res://assets/ui/icons/fightFist.png" id="10_8hfmx"]
 [ext_resource type="PackedScene" uid="uid://0rs5h6sj23mf" path="res://ui/human_connection/human_connection.tscn" id="11_tbxo0"]
 [ext_resource type="Texture2D" uid="uid://caoit7v87vfw7" path="res://assets/ui/icons/wrench.png" id="12_ddor6"]
+[ext_resource type="Texture2D" uid="uid://cjig1olbpmvki" path="res://assets/ui/icons/star.png" id="13_n8iqp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je7fc"]
 bg_color = Color(0.211765, 0.729412, 0.956863, 1)
@@ -75,9 +74,9 @@ expand_mode = 4
 [node name="EnergyHUD" type="TextureRect" parent="Panel/PanelContainer"]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 32.0
+offset_top = 64.0
 offset_right = 368.0
-offset_bottom = 160.0
+offset_bottom = 192.0
 texture = ExtResource("2_ex1my")
 expand_mode = 2
 
@@ -126,9 +125,9 @@ vertical_alignment = 1
 [node name="ActiveConnections" type="HBoxContainer" parent="Panel/PanelContainer"]
 layout_mode = 2
 offset_left = 32.0
-offset_top = 184.0
+offset_top = 200.0
 offset_right = 368.0
-offset_bottom = 234.0
+offset_bottom = 260.0
 alignment = 1
 
 [node name="Slot1" parent="Panel/PanelContainer/ActiveConnections" groups=["ConnectionSlot"] instance=ExtResource("5_hcot5")]
@@ -137,49 +136,39 @@ layout_mode = 2
 [node name="Slot2" parent="Panel/PanelContainer/ActiveConnections" groups=["ConnectionSlot"] instance=ExtResource("5_hcot5")]
 layout_mode = 2
 
-[node name="Slot3" parent="Panel/PanelContainer/ActiveConnections" groups=["ConnectionSlot"] instance=ExtResource("5_hcot5")]
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelContainer/ActiveConnections"]
 layout_mode = 2
 
-[node name="HeatsinksButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
-offset_left = 32.0
-offset_top = 264.0
-offset_right = 360.0
-offset_bottom = 312.0
-icon = ExtResource("7_bj5xr")
-
 [node name="ThrustersButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
-offset_left = 32.0
-offset_top = 320.0
-offset_right = 336.0
-offset_bottom = 368.0
+offset_left = 40.0
+offset_top = 280.0
+offset_right = 344.0
+offset_bottom = 328.0
 icon = ExtResource("8_f1e85")
 connection_type = 1
 
-[node name="ShieldsButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
-offset_left = 32.0
-offset_top = 376.0
-offset_right = 336.0
-offset_bottom = 424.0
-icon = ExtResource("9_2rgbh")
-connection_type = 2
-
 [node name="PowershotButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
-offset_left = 32.0
-offset_top = 432.0
-offset_right = 336.0
-offset_bottom = 480.0
+offset_left = 40.0
+offset_top = 344.0
+offset_right = 344.0
+offset_bottom = 392.0
 icon = ExtResource("10_8hfmx")
 connection_type = 3
 
-[node name="EnginnerO2Button" parent="Panel/PanelContainer" instance=ExtResource("11_tbxo0")]
-offset_left = 72.0
-offset_top = 496.0
-offset_right = 200.0
-offset_bottom = 616.0
+[node name="EngineerO2Button" parent="Panel/PanelContainer" instance=ExtResource("11_tbxo0")]
+offset_left = 56.0
+offset_top = 432.0
+offset_right = 184.0
+offset_bottom = 552.0
 icon = ExtResource("12_ddor6")
 connection_type = 4
+
+[node name="PassengerO2Button" parent="Panel/PanelContainer" instance=ExtResource("11_tbxo0")]
+offset_left = 216.0
+offset_top = 432.0
+offset_right = 344.0
+offset_bottom = 552.0
+icon = ExtResource("13_n8iqp")
+connection_type = 5
 
 [connection signal="timeout" from="Panel/PanelContainer/EnergyHUD/HeatProgressBar/HeatDissapationTimer" to="Panel/PanelContainer/EnergyHUD/HeatProgressBar" method="_on_heat_dissapation_timer_timeout"]

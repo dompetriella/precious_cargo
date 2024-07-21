@@ -5,3 +5,11 @@ signal damage_player(enemy_damage: int);
 signal heal_player(heal_amount: int);
 signal change_heat_amount(heat_amount: int);
 signal change_energy_level(energy_amount: int);
+
+signal toggle_heatsinks(connected: bool);
+signal toggle_thrusters(connected: bool);
+signal toggle_shields(connected: bool);
+signal toggle_powershot(connected: bool);
+signal toggle_engineer_o2(connected: bool);
+signal toggle_passenger_o2(connected: bool);
+signal send_passenger_bonus(bonus_multiplier: float);

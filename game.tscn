@@ -52,11 +52,6 @@ position = Vector2(95, -91)
 unique_name_in_owner = true
 position = Vector2(635, -99)
 
-[node name="Player" parent="PlayArea" groups=["Player"] instance=ExtResource("1_rcrqx")]
-position = Vector2(187, 470)
-speed = 350
-player_energy_per_shot = 2
-
 [node name="Boundary" type="StaticBody2D" parent="PlayArea" groups=["Boundary"]]
 
 [node name="Left" type="CollisionShape2D" parent="PlayArea/Boundary"]
@@ -80,6 +75,15 @@ shape = SubResource("RectangleShape2D_0gkp1")
 [node name="Bottom" type="CollisionShape2D" parent="PlayArea/DespawnZone"]
 position = Vector2(645.5, 614)
 shape = SubResource("RectangleShape2D_rx5ws")
+
+[node name="Player" parent="PlayArea" instance=ExtResource("1_rcrqx")]
+position = Vector2(376, 488)
+player_energy_maximium = 10000
+max_fire_delay = 0.2
+player_heat_dissapation = 3
+powershot_cooldown_rate_reduction = 0.33
+powershot_power_multiplier = 4.0
+human_oxygen_tick = 4
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -131,6 +135,9 @@ offset_bottom = 51.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_hyxum")
 script = ExtResource("5_dr3xg")
 
+[node name="HealingTimer" type="Timer" parent="UI/HealthControl/HealthBar"]
+unique_name_in_owner = true
+
 [node name="Score" type="Label" parent="UI"]
 layout_mode = 0
 offset_left = 16.0
@@ -140,3 +147,5 @@ offset_bottom = 48.0
 text = "SCORE: 0"
 vertical_alignment = 1
 script = ExtResource("6_wtcdh")
+
+[connection signal="timeout" from="UI/HealthControl/HealthBar/HealingTimer" to="UI/HealthControl/HealthBar" method="_on_healing_timer_timeout"]

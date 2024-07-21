@@ -18,9 +18,11 @@ func _ready() -> void:
 func _on_toggled(toggled_on: bool) -> void:
 	if (toggled_on):
 		_add_connection_to_slot();
+		_toggle_connection(true);
 		self.text = "DISCONNECT \n" + _get_name();
 	else:
 		_disconnect();
+		_toggle_connection(false);
 		self.text = "CONNECT \n" + _get_name();
 		
 func _process(delta: float) -> void:
@@ -30,7 +32,7 @@ func _process(delta: float) -> void:
 		if (button.is_connected):
 			amount_connnected += 1;
 	
-	if (amount_connnected > 2):
+	if (amount_connnected > 1):
 		for button in buttons:
 			if (!button.is_connected):
 				button.disabled = true;
@@ -59,6 +61,16 @@ func _add_connection_to_slot():
 		if (texture_rect.texture == null):
 			texture_rect.texture = connection_icon;
 			return;
+
+func _toggle_connection(connect_status: bool):
+	if (connection_type == Enums.ConnectionType.THRUSTERS):
+		Events.toggle_thrusters.emit(connect_status)
+	elif (connection_type == Enums.ConnectionType.POWERSHOT):
+		Events.toggle_powershot.emit(connect_status);
+	elif (connection_type == Enums.ConnectionType.ENGINEER):
+		Events.toggle_engineer_o2.emit(connect_status);
+	elif (connection_type == Enums.ConnectionType.PASSENGER):
+		Events.toggle_passenger_o2.emit(connect_status);
 
 func _get_name() -> String:
 	if (connection_type == Enums.ConnectionType.HEATSINKS):
