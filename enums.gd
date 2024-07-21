@@ -9,3 +9,12 @@ enum CannonType {
 	EAR,
 	MARCH
 }
+
+enum ConnectionType {
+	HEATSINKS,
+	THRUSTERS,
+	SHIELDS,
+	POWERSHOT,
+	ENGINEER,
+	PASSENGER
+}

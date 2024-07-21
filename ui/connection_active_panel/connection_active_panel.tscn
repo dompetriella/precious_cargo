@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci06ltau2h23e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kcdf"]
+bg_color = Color(0.366595, 0.366595, 0.366594, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8kcdf")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 50.0
+offset_bottom = 51.0
+expand_mode = 1

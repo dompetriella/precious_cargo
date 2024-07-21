@@ -1,15 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://bt851sxh60lbe"]
+[gd_scene load_steps=15 format=3 uid="uid://bt851sxh60lbe"]
 
-[ext_resource type="Texture2D" uid="uid://dje0ekm16o5nj" path="res://assets/ui/metalPanel.png" id="1_lylsh"]
+[ext_resource type="Texture2D" uid="uid://dgiw4bdcmd13s" path="res://assets/scaled_ui/Group 32(1).png" id="1_mb8oq"]
+[ext_resource type="Texture2D" uid="uid://boaypk5idjn3w" path="res://assets/scaled_ui/Group 7.png" id="2_ex1my"]
+[ext_resource type="Script" path="res://ui/energy_progress_bar.gd" id="3_ytnm8"]
+[ext_resource type="Script" path="res://ui/heat_progress_bar.gd" id="4_bivpq"]
+[ext_resource type="PackedScene" uid="uid://ci06ltau2h23e" path="res://ui/connection_active_panel/connection_active_panel.tscn" id="5_hcot5"]
+[ext_resource type="PackedScene" uid="uid://c8twv8h1s3wpo" path="res://ui/connection_button/connection_button.tscn" id="6_67vwf"]
+[ext_resource type="Texture2D" uid="uid://o0rw6pxd3md0" path="res://assets/ui/icons/arrowDown.png" id="7_bj5xr"]
+[ext_resource type="Texture2D" uid="uid://bvbyj7bw2radt" path="res://assets/ui/icons/larger.png" id="8_f1e85"]
+[ext_resource type="Texture2D" uid="uid://c8t7bdp65l65q" path="res://assets/ui/icons/fightJoy_25.png" id="9_2rgbh"]
+[ext_resource type="Texture2D" uid="uid://cyhh6hxph4ogc" path="res://assets/ui/icons/fightFist.png" id="10_8hfmx"]
+[ext_resource type="PackedScene" uid="uid://0rs5h6sj23mf" path="res://ui/human_connection/human_connection.tscn" id="11_tbxo0"]
+[ext_resource type="Texture2D" uid="uid://caoit7v87vfw7" path="res://assets/ui/icons/wrench.png" id="12_ddor6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je7fc"]
+bg_color = Color(0.211765, 0.729412, 0.956863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfud5"]
+bg_color = Color(0.211765, 0.729412, 0.956863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [node name="MainUIPanel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 749.0
+offset_left = 768.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,13 +60,126 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="PanelContainer" type="TextureRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -24.0
+offset_right = -6.60303
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_lylsh")
+texture = ExtResource("1_mb8oq")
 expand_mode = 4
-stretch_mode = 6
+
+[node name="EnergyHUD" type="TextureRect" parent="Panel/PanelContainer"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 368.0
+offset_bottom = 160.0
+texture = ExtResource("2_ex1my")
+expand_mode = 2
+
+[node name="EnergyProgressBar" type="ProgressBar" parent="Panel/PanelContainer/EnergyHUD"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 320.0
+offset_bottom = 56.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_je7fc")
+show_percentage = false
+script = ExtResource("3_ytnm8")
+
+[node name="ENERGY" type="Label" parent="Panel/PanelContainer/EnergyHUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 55.0
+text = "ENERGY"
+vertical_alignment = 1
+
+[node name="HeatProgressBar" type="ProgressBar" parent="Panel/PanelContainer/EnergyHUD"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 80.0
+offset_right = 320.0
+offset_bottom = 107.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_rfud5")
+show_percentage = false
+script = ExtResource("4_bivpq")
+
+[node name="HeatDissapationTimer" type="Timer" parent="Panel/PanelContainer/EnergyHUD/HeatProgressBar"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HEAT" type="Label" parent="Panel/PanelContainer/EnergyHUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 112.0
+text = "HEAT"
+vertical_alignment = 1
+
+[node name="ActiveConnections" type="HBoxContainer" parent="Panel/PanelContainer"]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 184.0
+offset_right = 368.0
+offset_bottom = 234.0
+alignment = 1
+
+[node name="Slot1" parent="Panel/PanelContainer/ActiveConnections" groups=["ConnectionSlot"] instance=ExtResource("5_hcot5")]
+layout_mode = 2
+
+[node name="Slot2" parent="Panel/PanelContainer/ActiveConnections" groups=["ConnectionSlot"] instance=ExtResource("5_hcot5")]
+layout_mode = 2
+
+[node name="Slot3" parent="Panel/PanelContainer/ActiveConnections" groups=["ConnectionSlot"] instance=ExtResource("5_hcot5")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelContainer/ActiveConnections"]
+layout_mode = 2
+
+[node name="HeatsinksButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
+offset_left = 32.0
+offset_top = 264.0
+offset_right = 360.0
+offset_bottom = 312.0
+icon = ExtResource("7_bj5xr")
+
+[node name="ThrustersButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 336.0
+offset_bottom = 368.0
+icon = ExtResource("8_f1e85")
+connection_type = 1
+
+[node name="ShieldsButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
+offset_left = 32.0
+offset_top = 376.0
+offset_right = 336.0
+offset_bottom = 424.0
+icon = ExtResource("9_2rgbh")
+connection_type = 2
+
+[node name="PowershotButton" parent="Panel/PanelContainer" instance=ExtResource("6_67vwf")]
+offset_left = 32.0
+offset_top = 432.0
+offset_right = 336.0
+offset_bottom = 480.0
+icon = ExtResource("10_8hfmx")
+connection_type = 3
+
+[node name="EnginnerO2Button" parent="Panel/PanelContainer" instance=ExtResource("11_tbxo0")]
+offset_left = 72.0
+offset_top = 496.0
+offset_right = 200.0
+offset_bottom = 616.0
+icon = ExtResource("12_ddor6")
+connection_type = 4
+
+[connection signal="timeout" from="Panel/PanelContainer/EnergyHUD/HeatProgressBar/HeatDissapationTimer" to="Panel/PanelContainer/EnergyHUD/HeatProgressBar" method="_on_heat_dissapation_timer_timeout"]

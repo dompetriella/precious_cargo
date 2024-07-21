@@ -17,4 +17,5 @@ func _on_body_entered(body: Node2D) -> void:
 		collide_damage = parent.collision_damage;
 	if (body is Player):
 		Events.damage_player.emit(collide_damage);
+		Events.increase_game_score.emit(parent.score);
 		get_parent().queue_free();

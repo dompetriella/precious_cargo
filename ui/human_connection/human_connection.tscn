@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://0rs5h6sj23mf"]
+
+[ext_resource type="Script" path="res://ui/human_connection/human_connection.gd" id="1_e8ero"]
+[ext_resource type="PackedScene" uid="uid://bjvhyk7dxirvw" path="res://ui/toggle_connection_button/toggle_connection_button.tscn" id="1_saxia"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 56.0
+script = ExtResource("1_e8ero")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+fill_mode = 2
+
+[node name="HumanToggleConnectionButton" parent="." instance=ExtResource("1_saxia")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 72.0
+offset_bottom = 120.0

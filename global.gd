@@ -1,6 +1,4 @@
-class_name NodeGroups
+class_name Globals
 
-const player = "Player";
-const enemy = "Enemy";
-const boundary = "Boundary";
-const enemy_generator = "EnemyGenerator";
+const good_blue: Color = Color("36BAF4");
+const bad_red: Color = Color("AC3939");

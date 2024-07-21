@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://bt851sxh60lbe"]
+
+[ext_resource type="Texture2D" uid="uid://dgiw4bdcmd13s" path="res://assets/scaled_ui/Group 32(1).png" id="1_mb8oq"]
+[ext_resource type="Texture2D" uid="uid://boaypk5idjn3w" path="res://assets/scaled_ui/Group 7.png" id="2_ex1my"]
+[ext_resource type="Script" path="res://ui/energy_progress_bar.gd" id="3_ytnm8"]
+[ext_resource type="Script" path="res://ui/heat_progress_bar.gd" id="4_bivpq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je7fc"]
+bg_color = Color(0.211765, 0.729412, 0.956863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfud5"]
+bg_color = Color(0.211765, 0.729412, 0.956863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="MainUIPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 768.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_right = -6.60303
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mb8oq")
+expand_mode = 4
+
+[node name="EnergyHUD" type="TextureRect" parent="Panel/TextureRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 368.0
+offset_bottom = 176.0
+texture = ExtResource("2_ex1my")
+expand_mode = 2
+
+[node name="EnergyProgressBar" type="ProgressBar" parent="Panel/TextureRect/EnergyHUD"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 320.0
+offset_bottom = 56.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_je7fc")
+show_percentage = false
+script = ExtResource("3_ytnm8")
+
+[node name="ENERGY" type="Label" parent="Panel/TextureRect/EnergyHUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 55.0
+text = "ENERGY"
+vertical_alignment = 1
+
+[node name="HeatProgressBar" type="ProgressBar" parent="Panel/TextureRect/EnergyHUD"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 80.0
+offset_right = 320.0
+offset_bottom = 107.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_rfud5")
+show_percentage = false
+script = ExtResource("4_bivpq")
+
+[node name="HeatDissapationTimer" type="Timer" parent="Panel/TextureRect/EnergyHUD/HeatProgressBar"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="HEAT" type="Label" parent="Panel/TextureRect/EnergyHUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 112.0
+text = "HEAT"
+vertical_alignment = 1
+
+[connection signal="timeout" from="Panel/TextureRect/EnergyHUD/HeatProgressBar/HeatDissapationTimer" to="Panel/TextureRect/EnergyHUD/HeatProgressBar" method="_on_heat_dissapation_timer_timeout"]
