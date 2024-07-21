@@ -30,7 +30,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if (self.value <= 0):
+		Events.player_has_died.emit("Passengers ran out of Oxygen :(");
 
 
 func _on_oxygen_tick_timeout() -> void:

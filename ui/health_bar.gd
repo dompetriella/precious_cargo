@@ -10,6 +10,10 @@ func _ready() -> void:
 	self.max_value = player.player_health;
 	self.value = player.player_health;
 
+func _process(delta: float) -> void:
+	if (self.value <= 0):
+		Events.player_has_died.emit("Player Ran out of Health");
+
 func _decrease_damage_from_healthbar(damage: int):
 	if (self.value - damage <= 0):
 		self.value = 0;

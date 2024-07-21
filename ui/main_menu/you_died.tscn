@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqjxenlsoqdpw"]
+
+[ext_resource type="StyleBox" uid="uid://42sxo0jqw3pg" path="res://ui/button_styles/normal.tres" id="1_80cyr"]
+[ext_resource type="StyleBox" uid="uid://cgeuoe2j580an" path="res://ui/button_styles/hover.tres" id="1_x42ft"]
+[ext_resource type="Script" path="res://ui/main_menu/play_again.gd" id="3_crdqb"]
+[ext_resource type="Script" path="res://ui/main_menu/death_reason.gd" id="3_npn75"]
+[ext_resource type="Script" path="res://ui/main_menu/main_menu_go.gd" id="4_hw8vg"]
+
+[node name="YouDied" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.694118)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 320.0
+offset_top = 128.0
+offset_right = 791.0
+offset_bottom = 265.0
+theme_override_colors/font_color = Color(0.67451, 0.223529, 0.223529, 1)
+theme_override_font_sizes/font_size = 100
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 400.0
+offset_right = 723.0
+offset_bottom = 476.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = ExtResource("1_x42ft")
+theme_override_styles/normal = ExtResource("1_80cyr")
+text = "Play Again"
+script = ExtResource("3_crdqb")
+
+[node name="MainMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 496.0
+offset_right = 723.0
+offset_bottom = 572.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = ExtResource("1_x42ft")
+theme_override_styles/normal = ExtResource("1_80cyr")
+text = "Main Menu"
+script = ExtResource("4_hw8vg")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 264.0
+offset_right = 760.0
+offset_bottom = 328.0
+text = "Ran out of health"
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("3_npn75")
+
+[connection signal="pressed" from="PlayAgain" to="PlayAgain" method="_on_pressed"]
+[connection signal="pressed" from="MainMenu" to="MainMenu" method="_on_pressed"]

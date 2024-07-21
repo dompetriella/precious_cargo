@@ -1,0 +1,113 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmunpcuqp8d3w"]
+
+[ext_resource type="Texture2D" uid="uid://doc3eefq383wm" path="res://assets/ui/icons/cross.png" id="1_2k6pb"]
+[ext_resource type="Script" path="res://ui/main_menu/info_close.gd" id="1_m0twp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqbgd"]
+bg_color = Color(0.6, 0.6, 0.6, 0.227451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8kp1"]
+bg_color = Color(0.485703, 0.485704, 0.485703, 0.439216)
+
+[node name="Info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -192.0
+offset_right = 288.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 20.0
+offset_right = 288.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 36
+text = "INFO"
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 84.0
+offset_right = 288.0
+offset_bottom = 341.0
+theme_override_font_sizes/font_size = 12
+text = "How to Play:
+-WASD to Move
+-Spacebar to Shoot
+
+Game Overs:
+-You run out of Energy
+-The Passengers run out of Oxygen
+-Your engines overheat
+-You lose all your health"
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 76.0
+offset_right = 280.0
+offset_bottom = 340.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iqbgd")
+
+[node name="Panel2" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 76.0
+offset_right = 560.0
+offset_bottom = 340.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iqbgd")
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 84.0
+offset_right = 560.0
+offset_bottom = 348.0
+theme_override_font_sizes/font_size = 12
+text = "Special Info
+- Happy engineers restore health
+- Connecting powershot will also increase heat
+
+Special Thanks
+Rojo for testing this terrible game
+
+Assets by Kenney, music by me
+
+@ Kenney Game Jam 2024"
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 128.0
+offset_right = 864.0
+offset_bottom = 168.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_x8kp1")
+script = ExtResource("1_m0twp")
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_2k6pb")
+expand_mode = 4
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

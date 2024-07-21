@@ -11,13 +11,16 @@ config_version=5
 [application]
 
 config/name="precious_cargo"
-run/main_scene="res://game.tscn"
+run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Events="*res://events.gd"
+BackgroundMusic="*res://background_music.gd"
+ReasonForDeath="*res://reason_for_death.gd"
+HighScore="*res://high_score.gd"
 
 [display]
 

@@ -15,6 +15,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var player: Player = get_tree().get_first_node_in_group(NodeGroups.player);
 	heat_dissapation = player.player_heat_dissapation;
+	if (self.value >= max_heat_value):
+		Events.player_has_died.emit("Engines overheated");
 
 func _change_heat_amount(heat_amount: int):
 	if (self.value + heat_amount <= 0):

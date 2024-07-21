@@ -14,6 +14,8 @@ func _ready() -> void:
 func _change_energy_level(energy_amount: int):
 	if (self.value + energy_amount >= max_energy_value):
 		self.value = max_energy_value;
+	if (self.value - energy_amount <= 0):
+		Events.player_has_died.emit("Ship ran out of energy");
 	else:
 		self.value += energy_amount;
 	

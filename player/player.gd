@@ -49,7 +49,6 @@ var bullet_scene: PackedScene = preload("res://bullet/bullet.tscn");
 
 var fire_delay: float = 0;
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fire_delay = max_fire_delay;
@@ -77,6 +76,16 @@ func _ready() -> void:
 		func(connection):
 		passenger_o2_connected = connection;
 	);
+	
+	Events.player_has_died.connect(_on_player_has_died);
+
+func _on_player_has_died(message: String):
+	var score_node: Label = get_tree().get_first_node_in_group("Score");
+	var score: int = int(score_node.text);
+	if (score > HighScore.high_score):
+		HighScore.high_score = score;
+	get_tree().change_scene_to_file("res://ui/main_menu/you_died.tscn");
+	self.queue_free();
 
 func _process(delta: float) -> void :
 	if (Input.is_action_pressed("ui_shoot")):
