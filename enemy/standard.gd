@@ -1,4 +1,4 @@
-class_name Standard
+class_name Ufo
 extends Node2D
 
 @export var score: int = 10;

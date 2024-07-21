@@ -27,6 +27,8 @@ func _fire_weapon(delta: float, cannon_position: Vector2):
 				_player_fire(delta);
 			Enums.CannonType.NONE:
 				print("NONE, FOLLOWING");
+			Enums.CannonType.EXPAND:
+				_fire_expand(delta, cannon_position);
 			Enums.CannonType.DOWNAIM:
 				_fire_downaim(delta, cannon_position);
 			_:
@@ -38,6 +40,21 @@ func _fire_weapon(delta: float, cannon_position: Vector2):
 
 func _player_fire(delta: float):
 	pass;
+	
+func _fire_expand(delta: float, cannon_position: Vector2):
+	var base_angle: int = 45;
+	var i: int = 0;
+	for n in range(9):
+		var bullet_instance: EnemyBullet = enemy_bullet.instantiate();
+		bullet_instance.bullet_angle = base_angle * i;
+		bullet_instance.speed = bullet_speed;
+		bullet_instance.global_position = cannon_position;
+		self.add_child(bullet_instance);
+		Events.play_sfx.emit("res://assets/audio/enemy_laser.ogg");
+		i += 1;
+		await get_tree().create_timer(0.1).timeout;
+		
+	
 
 func _fire_downaim(delta: float, cannon_position: Vector2):
 	var bullet_instance: EnemyBullet = enemy_bullet.instantiate();

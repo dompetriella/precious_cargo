@@ -18,3 +18,5 @@ signal play_sfx(media: String);
 signal play_sfx_player(media: String);
 
 signal player_has_died(reason_for_death: String);
+
+signal decrease_spawn_time();

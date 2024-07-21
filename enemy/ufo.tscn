@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbiejgwxwrnu4"]
+
+[ext_resource type="Script" path="res://enemy/standard.gd" id="1_pc73s"]
+[ext_resource type="Texture2D" uid="uid://cqvkpyeqb706g" path="res://assets/non_ui/Enemies/ufo.png" id="2_q1a7x"]
+[ext_resource type="PackedScene" uid="uid://b8b1ums63srw0" path="res://components/health_component/health_component.tscn" id="3_02bk6"]
+[ext_resource type="PackedScene" uid="uid://cdwg8nw2fcj22" path="res://components/hitbox_component/hitbox_component.tscn" id="4_h067l"]
+[ext_resource type="PackedScene" uid="uid://qldwjfs3dd3q" path="res://components/cannon_component/cannon_component.tscn" id="5_devy5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vw246"]
+radius = 48.3333
+height = 96.6667
+
+[node name="UFO" type="Node2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_pc73s")
+score = 50
+speed = 40.0
+collision_damage = 40
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q1a7x")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_02bk6")]
+max_health = 60.0
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") groups=["Enemy"] instance=ExtResource("4_h067l")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-3.06718e-12, -8.33333)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vw246")
+
+[node name="CannonComponent" parent="." instance=ExtResource("5_devy5")]
+cannon_tip_offset = Vector2(0, 17)
+cannon_type = 3
+bullet_speed = 120
+max_fire_delay = 6.0

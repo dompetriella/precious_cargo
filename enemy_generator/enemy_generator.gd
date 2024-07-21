@@ -1,6 +1,8 @@
 extends Node
 
 var standard_enemy: PackedScene = preload("res://enemy/standard.tscn");
+var ufo: PackedScene = preload("res://enemy/ufo.tscn");
+var speedster: PackedScene = preload("res://enemy/speedster.tscn");
 
 @onready var leftMarker: Marker2D = get_node("%LeftSpawnBoundary");
 @onready var rightMarker = get_node("%RightSpawnBoundary");
@@ -9,6 +11,8 @@ var previous_spawns: Array[int] = []
 var max_attempts: int = 100
 
 func _on_generate_timer_timeout() -> void:
+	var possible_spawns: Array[PackedScene] = [standard_enemy, ufo, speedster];
+	var rand_index:int = randi() % possible_spawns.size();
 	var new_x_coordinate: int
 	var attempts: int = 0
 	
@@ -38,7 +42,11 @@ func _on_generate_timer_timeout() -> void:
 	print(new_x_coordinate)
 	var new_y_coordinate = leftMarker.global_position.y
 	var new_enemy_position = Vector2(new_x_coordinate, new_y_coordinate)
-	var new_enemy_instance: Node2D = standard_enemy.instantiate()
+	var new_enemy_instance: Node2D = possible_spawns[rand_index].instantiate()
 	new_enemy_instance.global_position = new_enemy_position
 	self.add_child(new_enemy_instance)
 	
+
+
+func _on_decrease_spawn_timer_timeout() -> void:
+	Events.decrease_spawn_time.emit();
